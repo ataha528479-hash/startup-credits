@@ -1,0 +1,63 @@
+schema_version: sourcey.entity-authoring/v1alpha1
+entity:
+  entity_id: ent_vv8vgv8wmgtwcw7byfzjpx0t47
+  slug: qoyod
+  slug_aliases: []
+  name: Qoyod
+  domains:
+    - value: qoyod.com
+      role: primary
+      valid_from: 2026-09-01T06:25:00Z
+  category: finance-accounting
+profile:
+  description: Qoyod provides cloud accounting, e-invoicing, inventory, integrations, reporting, and financial-management tools for businesses in Saudi Arabia.
+  links:
+    site: https://www.qoyod.com
+sources:
+  - source_id: src_2c14de840b76e98f327fed16e0af690ee5663d8a6fd0293e05d9e9a78f4cdeae
+    url: https://www.qoyod.com/en/partnerships/support-programs/
+programs:
+  - program_id: prg_8prnfv5prxe04re5t005z1pjwq
+    program_slug: qoyod-startup-program
+    program_slug_aliases: []
+    title: Qoyod Startup Program
+    summary: Qoyod offers eligible Saudi startups a special discount on its full annual plan while retaining the standard plan features and support.
+    source_ids:
+      - src_2c14de840b76e98f327fed16e0af690ee5663d8a6fd0293e05d9e9a78f4cdeae
+offers:
+  - offer_id: off_k836mgz2b29w24k0bttth5n93w
+    program_id: prg_8prnfv5prxe04re5t005z1pjwq
+    offer_slug: startup-full-annual-plan-discount
+    offer_slug_aliases: []
+    title: Startup discount on Qoyod full annual plan
+    summary: Eligible Saudi startups receive a vendor-approved discount on Qoyod's full annual plan, including accounting reports, ZATCA integration, integrations, and 24/7 technical support. The public source does not state a fixed startup discount percentage.
+    lifecycle:
+      status: active
+      effective_from: 2026-09-01T06:25:00Z
+    economics:
+      consideration:
+        kind: unknown
+        description: The source does not publish the startup discount percentage or resulting annual price.
+      benefits:
+        - benefit_id: ben_01
+          description: Special discount on Qoyod's full annual plan, with the full plan features and support retained
+          kind: other
+          duration:
+            kind: exact
+            value: P1Y
+    eligibility:
+      rule:
+        kind: manual
+        criterion_id: cri_01
+        statement: The applicant must be a Saudi startup with a valid Saudi commercial registration less than one year old and either participation in an accredited incubator or an early funding round; Qoyod reviews eligibility before activation.
+        reason: not-machine-evaluable
+    roles:
+      terms_authority_entity_id: ent_vv8vgv8wmgtwcw7byfzjpx0t47
+      access_operator_entity_id: ent_vv8vgv8wmgtwcw7byfzjpx0t47
+    access:
+      availability: public
+      method: form
+      url: https://www.qoyod.com/en/partnerships/support-programs/
+    terms_url: https://www.qoyod.com/en/partnerships/support-programs/
+    source_ids:
+      - src_2c14de840b76e98f327fed16e0af690ee5663d8a6fd0293e05d9e9a78f4cdeae
