@@ -1,0 +1,43 @@
+name: Temporary BattLeDIM data extract
+
+on:
+  push:
+    branches:
+      - temp-battledim-data-extract-20260912
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  download-official-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Download official BattLeDIM 2019 M&V inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p battledim
+          base='https://zenodo.org/records/4017659/files'
+          for f in 2019_SCADA_Flows.csv 2019_SCADA_Demands.csv 2019_SCADA_Levels.csv; do
+            curl --fail --location --retry 5 --retry-delay 3 --output "battledim/$f" "$base/$f?download=1"
+          done
+          cd battledim
+          printf '%s  %s\n' \
+            '28fc99fdcbf80fcd26079e7fe602d6dc' '2019_SCADA_Flows.csv' \
+            'b3e111de397a1b06d33b8a9f13bc997d' '2019_SCADA_Demands.csv' \
+            'e5a8050bd38729e4b7648b9d52abd5b1' '2019_SCADA_Levels.csv' \
+            > MD5SUMS
+          md5sum -c MD5SUMS
+          sha256sum 2019_SCADA_Flows.csv 2019_SCADA_Demands.csv 2019_SCADA_Levels.csv > SHA256SUMS
+          ls -lh
+
+      - name: Upload verified official inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: battledim-2019-mv-official
+          path: battledim/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 6
